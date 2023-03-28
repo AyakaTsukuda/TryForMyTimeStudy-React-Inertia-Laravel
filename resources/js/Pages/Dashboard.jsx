@@ -15,8 +15,16 @@ export default function Dashboard(props) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">Try this tasks!</div>
                         <ul className="p-6 text-gray-900">
-                            <li>● Read the `inertiajs + React` tutorial code and transcribe a code.</li>
-                            <li>● Study about `inertiajs + React` Form and Post validation.</li>
+                            <li>● inertia.js + React のCRUDチュートリアル</li>
+                            <li>● inertia.js動作の基本</li>
+                            <li>〇React BlogのContentをTextareaフォームのコンポーネントに置き換えてみる</li>
+                            <li>〇inertia.js + React 検索フォームの作り方を確認</li>
+                            <li>〇useForm errors メッセージの編集方法を探す</li>
+                            <li>〇inertia.js API通信(あまりにも資料が少なかったらやめる)</li>
+                            <li>〇inertia.js + React ページネーションのやり方</li>
+                            <li>〇Laravel FormValidation まとめて書く書き方確認(Login追っていけばありそう)</li>
+                            <li>〇Laravel User毎に出し分けるヤツのやり方確認(Login追っていけばありそう)</li>
+
                         </ul>
                         <p className="p-6 text-gray-900"> ↑ ここまでやったところで一週間が終わると思う。</p>
                     </div>

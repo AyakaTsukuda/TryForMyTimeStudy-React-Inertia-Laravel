@@ -42,5 +42,9 @@ Route::resource('/blogs', BlogController::class)
     ->middleware('auth')
     ->only(['index', 'create', 'store', 'destroy', 'edit', 'update']);
 
+Route::get('/starter', function () {
+    return Inertia::render('Starter',['greeting'=>'Hello']);
+})->middleware(['auth', 'verified'])->name('starter');
+
 
 require __DIR__.'/auth.php';
