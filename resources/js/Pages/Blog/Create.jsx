@@ -4,6 +4,7 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
+import WideTextInput from '@/Components/WideTextInput';
 
 
 export default function Create(props) {
@@ -52,8 +53,8 @@ export default function Create(props) {
                                 </div>
                                 <div>
                                     <InputLabel htmlFor="content" value="Content" />
-                                    <TextInput
-                                        type="text"
+                                    <WideTextInput
+                                        rows="20"
                                         name="content"
                                         className="w-full"
                                         value={data.content}
