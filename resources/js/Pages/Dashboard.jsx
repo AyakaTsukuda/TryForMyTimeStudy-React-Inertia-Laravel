@@ -17,7 +17,7 @@ export default function Dashboard(props) {
                         <ul className="p-6 text-gray-900">
                             <li>● inertia.js + React のCRUDチュートリアル</li>
                             <li>● inertia.js動作の基本</li>
-                            <li>〇React BlogのContentをTextareaフォームのコンポーネントに置き換えてみる</li>
+                            <li>● React BlogのContentをTextareaフォームのコンポーネントに置き換えてみる</li>
                             <li>〇inertia.js + React 検索フォームの作り方を確認</li>
                             <li>〇useForm errors メッセージの編集方法を探す</li>
                             <li>〇inertia.js API通信(あまりにも資料が少なかったらやめる)</li>

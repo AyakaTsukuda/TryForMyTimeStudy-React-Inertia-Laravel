@@ -12,8 +12,21 @@ use Inertia\Inertia;
 class BlogController extends Controller
 {
 
-    public function index(){
-        return Inertia::render('Blog/Index', ['blogs' => Blog::all()]);
+    public function index(Request $request){
+        $keyword = !empty($request->input('search')) ? $request->input('search') : "";
+
+        if(!empty($keyword)){
+            $query   = Blog::query();
+
+            $query->where('title', 'LIKE', '%'.$keyword.'%')
+                ->orWhere('content', 'LIKE', '%'.$keyword.'%');
+            $blogs = $query->get();
+
+        } else {
+            $blogs = Blog::all();
+        }
+
+        return Inertia::render('Blog/Index', ['blogs' => $blogs, 'search' => $keyword]);
     }
 
 

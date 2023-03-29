@@ -19,7 +19,6 @@ export default function Create(props) {
     }
 
     const submit = (e) => {
-        console.log(e.target);
         e.preventDefault();
         post(route("blogs.store"));
     }
