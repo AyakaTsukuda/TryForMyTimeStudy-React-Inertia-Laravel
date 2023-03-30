@@ -3,6 +3,7 @@ import { Link, Head, useForm } from '@inertiajs/react';
 import PrimaryButton from "@/Components/PrimaryButton";
 import DangerButton from "@/Components/DangerButton";
 import TextInput from '@/Components/TextInput';
+import Pagination from '@/Components/Pagination';
 
 export default function Index(props) {
 
@@ -71,7 +72,7 @@ export default function Index(props) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {props.blogs.map((blog) => {
+                                    {props.blogs.data.map((blog) => {
                                         return (
                                             <tr key={blog.id}>
                                                 <td className="border px-4 py-2">
@@ -101,6 +102,10 @@ export default function Index(props) {
                                     })}
                                 </tbody>
                             </table>
+                            <div className="pt-4 flex justify-center">
+                                { console.log(props.blogs.links) }
+                                {/*<Pagination /> あーーーちょっと調べないと分からない*/}
+                            </div>
 
                         </div>
                     </div>

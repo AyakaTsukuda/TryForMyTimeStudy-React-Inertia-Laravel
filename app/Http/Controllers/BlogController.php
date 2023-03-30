@@ -13,20 +13,20 @@ class BlogController extends Controller
 {
 
     public function index(Request $request){
+
+        // search
         $keyword = !empty($request->input('search')) ? $request->input('search') : "";
 
         if(!empty($keyword)){
-            $query   = Blog::query();
-
-            $query->where('title', 'LIKE', '%'.$keyword.'%')
-                ->orWhere('content', 'LIKE', '%'.$keyword.'%');
-            $blogs = $query->get();
+            $blogs = Blog::where('title', 'LIKE', '%'.$keyword.'%')
+                ->orWhere('content', 'LIKE', '%'.$keyword.'%')
+                ->paginate(5);
 
         } else {
-            $blogs = Blog::all();
+            $blogs = Blog::paginate(5);
         }
 
-        return Inertia::render('Blog/Index', ['blogs' => $blogs, 'search' => $keyword]);
+        return Inertia::render('Blog/Index', ['blogs' => $blogs,'search' => $keyword]);
     }
 
 
