@@ -20,10 +20,11 @@ class BlogController extends Controller
         if(!empty($keyword)){
             $blogs = Blog::where('title', 'LIKE', '%'.$keyword.'%')
                 ->orWhere('content', 'LIKE', '%'.$keyword.'%')
+                ->orderBy('created_at', 'desc')
                 ->paginate(5);
 
         } else {
-            $blogs = Blog::paginate(100);
+            $blogs = Blog::orderBy('created_at', 'desc')->paginate(5);
         }
 
         return Inertia::render('Blog/Index', ['blogs' => $blogs,'search' => $keyword]);

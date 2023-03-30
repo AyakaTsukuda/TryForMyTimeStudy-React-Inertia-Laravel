@@ -69,6 +69,10 @@ export default function Index(props) {
                                     <tr>
                                         <th>Title</th>
                                         <th>Contents</th>
+                                        <th></th>
+                                        <th>
+                                            Total : {props.blogs.total}
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -103,8 +107,7 @@ export default function Index(props) {
                                 </tbody>
                             </table>
                             <div className="pt-4 flex justify-center">
-                                { console.log(props.blogs.links) }
-                                {/*<Pagination /> あーーーちょっと調べないと分からない*/}
+                                <Pagination posts={props.blogs} search={data.search}/>
                             </div>
 
                         </div>
