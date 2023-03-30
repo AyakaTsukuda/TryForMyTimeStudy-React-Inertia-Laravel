@@ -7,11 +7,13 @@ import TextInput from '@/Components/TextInput';
 import WideTextInput from '@/Components/WideTextInput';
 
 
-export default function Create(props) {
+export default function Form(props) {
 
-    const { data, setData, post, processing, errors } = useForm({
-        title: "",
-        content: "",
+    let form_type = !props.blog ? 'create' : 'edit';
+
+    const { data, setData, post, patch, processing, errors } = useForm({
+        title  : form_type=='create' ? "" : props.blog.title,
+        content: form_type=='create' ? "" : props.blog.content,
     });
 
     const onHandleChange = (event) => {
@@ -20,7 +22,12 @@ export default function Create(props) {
 
     const submit = (e) => {
         e.preventDefault();
-        post(route("blogs.store"));
+
+        if(form_type=='create'){
+            post(route("blogs.store"));
+        } else {
+            patch(route("blogs.update", props.blog.id));
+        }
     }
 
     return (
@@ -64,7 +71,7 @@ export default function Create(props) {
                                     <PrimaryButton
                                         disabled={processing}
                                     >
-                                        Create
+                                        {form_type=='create' ? "Create" : "Update"}
                                     </PrimaryButton>
                                 </div>
                             </form>

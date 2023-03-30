@@ -23,7 +23,7 @@ class BlogController extends Controller
                 ->paginate(5);
 
         } else {
-            $blogs = Blog::paginate(5);
+            $blogs = Blog::paginate(100);
         }
 
         return Inertia::render('Blog/Index', ['blogs' => $blogs,'search' => $keyword]);
@@ -31,7 +31,7 @@ class BlogController extends Controller
 
 
     public function create(){
-        return Inertia::render('Blog/Create');
+        return Inertia::render('Blog/Form', ['blog' => false]);
     }
 
 
@@ -53,7 +53,7 @@ class BlogController extends Controller
 
 
     public function edit(Blog $blog){
-        return Inertia::render('Blog/Edit', ['blog' => $blog]);
+        return Inertia::render('Blog/Form', ['blog' => $blog]);
     }
 
 
