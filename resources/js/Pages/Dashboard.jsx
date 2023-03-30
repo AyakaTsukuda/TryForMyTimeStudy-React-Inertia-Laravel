@@ -21,7 +21,7 @@ export default function Dashboard(props) {
                                 <li>● inertia.js動作の基本</li>
                                 <li>● React BlogのContentをTextareaフォームのコンポーネントに置き換えてみる</li>
                                 <li>● inertia.js + React 検索フォームの作り方を確認</li>
-                                <li>〇inertia.js + React ページネーションのやり方を確認</li>
+                                <li>● inertia.js + React ページネーションのやり方を確認</li>
                                 <li>〇色々なフォームのデータの渡し方を確認(dropdown, dropdown(複数選択), checkbox, radio, fileImport)</li>
                                 <li>〇useForm errors メッセージの編集方法を探す</li>
                                 <li>〇Laravel FormValidation まとめて書く書き方確認&Form使ってる所全部書き直し(Login追っていけばありそう)</li>

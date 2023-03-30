@@ -2,72 +2,99 @@ export default function Pagination({ posts='', search='' }) {
 
     const search_word_url = !search ? '' : `&search=${search}`;
 
+    console.log(posts);
+
     return (
 
         <div className="flex items-center justify-between border-gray-200 bg-white px-4 py-3 sm:px-6">
+
+            {/*~sm size*/}
+            <div className="flex flex-1 justify-between sm:hidden">
+                <a
+                    href={!posts.prev_page_url ? null : posts.prev_page_url}
+                    className={`relative inline-flex items-center rounded-md border border-gray-300
+                        bg-white px-4 py-2 text-sm font-medium text-gray-700 ${!posts.prev_page_url?'':'hover:bg-gray-50'}`}
+                >
+                    Previous
+                </a>
+                <label className="px-4 py-2 text-sm font-medium text-gray-700">
+                    {`- ${posts.current_page} -`}
+                </label>
+                <a
+                    href={!posts.next_page_url ? null : posts.next_page_url}
+                    className={`relative inline-flex items-center rounded-md border border-gray-300
+                        bg-white px-4 py-2 text-sm font-medium text-gray-700 ${!posts.next_page_url?'':'hover:bg-gray-50'}`}
+                >
+                    Next
+                </a>
+            </div>
+
+            {/*md~ size  isolate*/}
             <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-                <nav className="isolate inline-flex -space-x-px rounded-md" aria-label="Pagination">
+                <div>
+                    <nav className="inline-flex -space-x-px rounded-md" aria-label="Pagination">
 
-                    <a
-                        href={posts.current_page==1 ? null : posts.first_page_url+search_word_url}
-                        className={`relative inline-flex items-center px-4 py-2 rounded-l-md
-                            text-gray-900 text-sm font-semibold ring-1 ring-inset ring-gray-300
-                            ${posts.current_page==1?'':'hover:bg-gray-50'} focus:z-20 focus:outline-offset-0`}
-                    >
-                        {"«"}
-                    </a>
+                        <a
+                            href={posts.current_page==1 ? null : posts.first_page_url+search_word_url}
+                            className={`relative inline-flex items-center px-4 py-2 rounded-l-md
+                                text-gray-900 text-sm font-semibold ring-1 ring-inset ring-gray-300
+                                ${posts.current_page==1?'':'hover:bg-gray-50'} focus:z-20 focus:outline-offset-0`}
+                        >
+                            {"«"}
+                        </a>
 
-                    {posts.links.map((button_info, index)=>{
-                        // button design
-                        const text_color = !button_info.active ? 'text-gray-900' : 'text-white';
-                        const bg_color   = !button_info.active ? 'bg-white' : 'bg-indigo-600';
-                        const hover      = () => {
-                            if((button_info.label=='&laquo; Previous' && posts.current_page==1)
-                                ||(button_info.label=='Next &raquo;' && posts.current_page==posts.last_page)){
-                                return('');
+                        {posts.links.map((button_info, index)=>{
+                            // button design
+                            const text_color = !button_info.active ? 'text-gray-900' : 'text-white';
+                            const bg_color   = !button_info.active ? 'bg-white' : 'bg-indigo-600';
+                            const hover      = () => {
+                                if((button_info.label=='&laquo; Previous' && posts.current_page==1)
+                                    ||(button_info.label=='Next &raquo;' && posts.current_page==posts.last_page)){
+                                    return('');
 
-                            } else if(!button_info.active){
-                                return('hover:bg-gray-50');
+                                } else if(!button_info.active){
+                                    return('hover:bg-gray-50');
 
-                            } else {
-                                return('hover:bg-indigo-600');
+                                } else {
+                                    return('hover:bg-indigo-600');
+                                }
                             }
-                        }
 
-                        // mark transform
-                        const getLabel = () => {
-                            if(button_info.label=='&laquo; Previous'){
-                                return ("<");
-                            } else if(button_info.label=='Next &raquo;'){
-                                return (">");
-                            } else {
-                                return (button_info.label);
+                            // mark transform
+                            const getLabel = () => {
+                                if(button_info.label=='&laquo; Previous'){
+                                    return ("<");
+                                } else if(button_info.label=='Next &raquo;'){
+                                    return (">");
+                                } else {
+                                    return (button_info.label);
+                                }
                             }
-                        }
 
-                        return(
-                            <a
-                                key={index}
-                                href={!button_info.url ? null : button_info.url+search_word_url}
-                                className={`relative inline-flex items-center px-4 py-2
-                                            ${text_color} ${bg_color} text-sm font-semibold ring-1 ring-inset ring-gray-300
-                                            ${hover()} focus:z-20 focus:outline-offset-0`}
-                            >
-                                {getLabel()}
-                            </a>
-                        );
-                    })}
+                            return(
+                                <a
+                                    key={index}
+                                    href={!button_info.url ? null : button_info.url+search_word_url}
+                                    className={`relative inline-flex items-center px-4 py-2
+                                                ${text_color} ${bg_color} text-sm font-semibold ring-1 ring-inset ring-gray-300
+                                                ${hover()} focus:z-20 focus:outline-offset-0`}
+                                >
+                                    {getLabel()}
+                                </a>
+                            );
+                        })}
 
-                    <a
-                        href={posts.current_page==posts.last_page ? null : posts.last_page_url+search_word_url}
-                        className={`relative inline-flex items-center px-4 py-2 rounded-r-md
-                            text-gray-900 text-sm font-semibold ring-1 ring-inset ring-gray-300
-                            ${posts.current_page==posts.last_page?'':'hover:bg-gray-50'} focus:z-20 focus:outline-offset-0`}
-                    >
-                        {"»"}
-                    </a>
+                        <a
+                            href={posts.current_page==posts.last_page ? null : posts.last_page_url+search_word_url}
+                            className={`relative inline-flex items-center px-4 py-2 rounded-r-md
+                                text-gray-900 text-sm font-semibold ring-1 ring-inset ring-gray-300
+                                ${posts.current_page==posts.last_page?'':'hover:bg-gray-50'} focus:z-20 focus:outline-offset-0`}
+                        >
+                            {"»"}
+                        </a>
 
-                </nav>
+                    </nav>
+                </div>
             </div>
         </div>
 
