@@ -45,7 +45,7 @@ export default function Index(props) {
                                 <form onSubmit={submit}>
                                     <div className="py-1 flex gap-1 items-stretch">
                                         <TextInput
-                                            type="text"
+                                            type="search"
                                             name="search"
                                             value={data.search}
                                             isFocused={true}
@@ -106,6 +106,9 @@ export default function Index(props) {
                                     })}
                                 </tbody>
                             </table>
+                            <div className="p-2 flex justify-end">
+                                <label htmlFor="">Row : {props.blogs.per_page}</label>
+                            </div>
                             <div className="pt-4 flex justify-center">
                                 <Pagination posts={props.blogs} search={data.search}/>
                             </div>

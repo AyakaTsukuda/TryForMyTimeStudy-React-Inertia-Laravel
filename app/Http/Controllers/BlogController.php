@@ -21,10 +21,10 @@ class BlogController extends Controller
             $blogs = Blog::where('title', 'LIKE', '%'.$keyword.'%')
                 ->orWhere('content', 'LIKE', '%'.$keyword.'%')
                 ->orderBy('created_at', 'desc')
-                ->paginate(5);
+                ->paginate(10);
 
         } else {
-            $blogs = Blog::orderBy('created_at', 'desc')->paginate(5);
+            $blogs = Blog::orderBy('created_at', 'desc')->paginate(10);
         }
 
         return Inertia::render('Blog/Index', ['blogs' => $blogs,'search' => $keyword]);
@@ -66,6 +66,12 @@ class BlogController extends Controller
 
         $blog->update($request->all());
         return redirect()->route('blogs.index');
+    }
+
+
+    public function publish_settings($blog_id){
+        $blog = Blog::findOrFail($blog_id);
+        return Inertia::render('Blog/PublishSettings', ['blog' => $blog]);
     }
 
 }

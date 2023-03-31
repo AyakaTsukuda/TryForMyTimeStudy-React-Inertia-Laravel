@@ -38,6 +38,10 @@ Route::middleware('auth')->group(function () {
 
 
 /* here my code */
+Route::get('/blogs/{id}/publish_settings', [BlogController::class, 'publish_settings'])
+    ->middleware('auth')
+    ->name('blogs.publish_settings');
+
 Route::resource('/blogs', BlogController::class)
     ->middleware('auth')
     ->only(['index', 'create', 'store', 'destroy', 'edit', 'update']);
